@@ -1,7 +1,7 @@
-const catModule = {
+const catsModule = {
     state: {},
     mutations: {},
     actions: {},
 };
 
-export default catModule;
+export default catsModule;

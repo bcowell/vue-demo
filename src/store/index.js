@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import hackernewsModule from './hackernewsModule';
-import catModule from './catModule';
+import catsModule from './catsModule';
 
 Vue.use(Vuex);
 
 const modules = {
     hackernews: hackernewsModule,
-    cat: catModule,
+    cats: catsModule,
 };
 
 export default new Vuex.Store({
