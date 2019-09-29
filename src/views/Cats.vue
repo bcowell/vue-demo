@@ -30,13 +30,6 @@ export default {
     left: 50%;
 }
 
-@media screen and (orientation: portrait) {
-    .responsive-image { width: 50%; }
-}
-
-@media screen and (orientation: landscape) {
-    .responsive-image { width: 50%; }
-}
 
 /* Nice stripe-style buttons */
 button {
