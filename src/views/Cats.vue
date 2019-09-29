@@ -1,31 +1,25 @@
 <template>
     <div class="cats">
         <h1>This is a cats page</h1>
-        <img src="imageSource" class="responsive-image" />
-        <button>Random Cat</button>
+        <button @click="fetchNewCat()">Random Cat</button>
+        <br />
+        <img :src="imageSource" class="responsive-image" />
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
-    name: 'cats',
-    data() {
-        return {
-            imageSource: '',
-        };
-    },
-    computed: {
-        ...mapGetters('cats', [
-            'getCatImage',
-        ]),
-    },
-    methods: {
-        ...mapActions('cats', [
-            'setCatImage',
-        ]),
-    },
+    computed: mapState({
+        imageSource: state => state.cat.imageSource
+    }),
+    methods: mapActions('cat', [
+        'fetchNewCat',
+    ]),
+    created() {
+        this.$store.dispatch('cat/fetchNewCat')
+    }
 };
 </script>
 
@@ -36,11 +30,11 @@ export default {
 }
 
 @media screen and (orientation: portrait) {
-    .responsive-image { max-width: 90%; }
+    .responsive-image { width: 50%; }
 }
 
 @media screen and (orientation: landscape) {
-    .responsive-image { max-height: 90%; }
+    .responsive-image { width: 50%; }
 }
 
 /* Nice stripe-style buttons */
@@ -67,6 +61,10 @@ button {
     margin: 0;
     -webkit-appearance: button;
     cursor: pointer;
+
+    position: relative;
+    display: flex;
+    left: calc(50% - 70px);
 }
 
 button:hover {

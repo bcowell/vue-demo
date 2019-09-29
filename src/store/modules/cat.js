@@ -1,25 +1,27 @@
-import { SET_CAT_IMAGE } from '../mutationTypes';
+import axios from 'axios';
+const SET_CAT_IMAGE = 'SET_CAT_IMAGE';
 
 // initial state
 const state = {
+    // my favourite as a placeholder
     imageSource: 'https://purr.objects-us-east-1.dream.io/i/4qeDit8.jpg',
 };
 
 // getters
-const getters = {
-    getCatImage: state => state.imageSource,
-};
+const getters = {};
 
 // actions
 const actions = {
-    setCatImage({ commit }, imageSource) {
-        commit({
-            type: SET_CAT_IMAGE,
-            imageSource,
-        });
-    },
-    requestNewCatImage({ commit }) {
-        commit();
+    async fetchNewCat ({ commit }) {
+        try {
+            const url = 'https://aws.random.cat/meow'
+            const res = await axios.get(url)
+            const newImageSource = res.data.file
+            commit(SET_CAT_IMAGE, newImageSource)
+        }
+        catch (err) {
+            console.log(err)
+        }
     },
 };
 
@@ -36,5 +38,5 @@ export default {
     state,
     getters,
     actions,
-    mutations,
+    mutations
 };
