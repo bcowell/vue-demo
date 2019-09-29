@@ -18,7 +18,8 @@ export default {
         'fetchNewCat',
     ]),
     created() {
-        this.$store.dispatch('cat/fetchNewCat')
+        // Let's leave the nice placeholder until the user clicks to fetch a new cat
+        // this.fetchNewCat()
     }
 };
 </script>
